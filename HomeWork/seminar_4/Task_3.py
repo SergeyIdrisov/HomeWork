@@ -27,4 +27,4 @@ for i in range(len(dan2)):
         c+=1
 ax2.pie([a,b,c], labels=['<=1.2(cm)','>=1.2(cm) and < 1.5(cm)', '>=1.5(cm)'])
 ax2.set_title('PetalLengthCm')
-fib.show()
+plt.show()

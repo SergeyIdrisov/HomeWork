@@ -38,8 +38,14 @@ class Ball():
             и стен по краям окна (размер окна 800х600).
         """
         # TODO
-        #self.x +=
-        #self.y -=
+        self.vy-=3
+        self.x += self.vx
+        self.y -= self.vy
+        self.set_coords()
+        if self.x>800:
+            self.vx= -self.vx +10
+        if self.y > 580 or self.y <20:
+            self.vy = -self.vy -10
 
     def hittest(self, ob):
         """ Функция проверяет сталкивалкивается ли данный обьект с целью, описываемой в обьекте ob.
@@ -50,7 +56,11 @@ class Ball():
             Возвращает True в случае столкновения мяча и цели. В противном случае возвращает False.
         """
         # TODO
-        return False
+        if (self.r + ob.r)>=(abs(self.x-ob.x)**2 + abs(self.y - ob.y)**2)**0.5:
+            return True
+        else:
+            return False
+
 
 
 class gun():
@@ -60,7 +70,9 @@ class gun():
         self.f2_power = 10
         self.f2_on = 0
         self.an = 1
-        self.id = canv.create_line(20, 450, 50, 420, width=7)  # FIXME: don't know how to set it...
+        self.id = canv.create_line(20, 450, 50, 420, width=7)
+
+
 
     def fire2_start(self, event):
         self.f2_on = 1
@@ -80,9 +92,8 @@ class gun():
         self.f2_on = 0
         self.f2_power = 10
 
+
     def targetting(self, event=0):
-        """ Прицеливание. Зависит от положения мыши.
-        """
         if event:
             self.an = math.atan((event.y - 450) / (event.x - 20))
         if self.f2_on:
@@ -92,10 +103,11 @@ class gun():
         canv.coords(self.id, 20, 450, 20 + max(self.f2_power, 20) * math.cos(self.an),
                     450 + max(self.f2_power, 20) * math.sin(self.an))
 
+
     def power_up(self):
         if self.f2_on:
             if self.f2_power < 100:
-                self.f2_power += 1
+                self.f2_power += 5
             canv.itemconfig(self.id, fill='orange')
         else:
             canv.itemconfig(self.id, fill='black')
@@ -104,29 +116,27 @@ class gun():
 class target():
     """ Класс target описывает цель. """
 
-    def __init__(self, x=40, y=450):
+    def __init__(self,x=40,y=450):
         self.points = 0
         self.live = 1
-        # TODO: don't work!!! How to call this functions when object is created?
-        # self.id = canv.create_oval(0,0,0,0)
-        # self.id_points = canv.create_text(30,30,text = self.points,font = '28')
-        # self.new_target()
+        #TODO: don't work!!! How to call this functions when object is created?
+        self.id = canv.create_oval(0,0,0,0)
+        self.id_points = canv.create_text(30,30,text = self.points,font = '28')
 
     def new_target(self):
         """ Инициализация новой цели. """
-        x = self.x = rnd(600, 780)
-        y = self.y = rnd(300, 550)
-        r = self.r = rnd(2, 50)
+        x = self.x = rnd(600,780)
+        y = self.y = rnd(300,550)
+        r = self.r = rnd(2,50)
         color = self.color = 'red'
-        canv.coords(self.id, x - r, y - r, x + r, y + r)
-        canv.itemconfig(self.id, fill=color)
+        canv.coords(self.id, x-r,y-r,x+r,y+r)
+        canv.itemconfig(self.id, fill = color)
 
-    def hit(self, points=1):
+    def hit(self,points = 1):
         """ Попадание шарика в цель. """
-        canv.coords(self.id, -10, -10, -10, -10)
+        canv.coords(self.id,-10,-10,-10,-10)
         self.points += points
-        canv.itemconfig(self.id_points, text=self.points)
-
+        canv.itemconfig(self.id_points, text = self.points, font = '28')
 
 t1 = target()
 screen1 = canv.create_text(400, 300, text='', font='28')
@@ -137,15 +147,17 @@ balls = []
 
 def new_game(event=''):
     global gun, t1, screen1, balls, bullet
+    canv.itemconfig(screen1, text='')
     t1.new_target()
     bullet = 0
     balls = []
     canv.bind('<Button-1>', g1.fire2_start)
     canv.bind('<ButtonRelease-1>', g1.fire2_end)
     canv.bind('<Motion>', g1.targetting)
+    t1.live = 1
+
 
     z = 0.03
-    t1.live = 1
     while t1.live or balls:
         for b in balls:
             b.move()
@@ -155,14 +167,14 @@ def new_game(event=''):
                 canv.bind('<Button-1>', '')
                 canv.bind('<ButtonRelease-1>', '')
                 canv.itemconfig(screen1, text='Вы уничтожили цель за ' + str(bullet) + ' выстрелов')
+                root.after(2000,new_game)
+
         canv.update()
         time.sleep(0.03)
         g1.targetting()
         g1.power_up()
-    canv.itemconfig(screen1, text='')
     canv.delete(gun)
-    root.after(750, new_game)
-
+    root.after(1000, new_game)
 
 new_game()
 

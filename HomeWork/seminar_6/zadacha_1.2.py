@@ -47,15 +47,27 @@ class Vector():
             return Vector(self.x / other.x, self.y / other.y, self.z / other.z)
         else:
             return Vector(self.x / other, self.y / other, self.z / other)
+    def vector_proz(self,other):
+        x = self.y*other.z - self.z*self.y
+        y = -(self.x*self.z-self.z*other.x)
+        z = self.x*other.y - self.y*other.x
+        return Vector(x,y,z)
+    #x y z
+    #1 2 3
+    #4 5 6
     def __repr__(self):
         return f'({self.x}, {self.y}, {self.z})'
-
 N = list(map(float, input().split()))
-v1 = Vector(N[0],N[1],N[2])
-v2 = Vector(N[3], N[4], N[5])
-print(v1, '- v1')
-print(v2, '- v2')
-print(v1 + 5, '- v1 + 5')
-print(v1*5, '- v1*5')
-print(v1*5 + 5 , '- v1*5 + 5')
-print(v1*v2 , '- v1*v2')
+v=[0]*int(len(N)/3)
+for i in range(int(len(N)/3)):
+    v[i] = Vector(N[i*3],N[i*3+1],N[i*3+2])
+b = []
+ind = []
+for a in v:
+    b.append(abs(a))
+for i in range(2):
+     ind.append(b.index(max(b)))
+     b.pop(b.index(max(b)))
+
+ans = abs(Vector.vector_proz(v[ind[0]],v[ind[-1]]))/2
+print(ans)

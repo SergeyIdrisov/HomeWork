@@ -96,7 +96,7 @@ def graphick1():
         y=[]
         x.append(MNK1(x1,y1))
         x.append(MNK2(x1,y1))
-        ax1.errorbar (x1,y1, yerr = sigma2/10, xerr = sigma1/10, color = 'k', linestyle = 'None')
+        ax1.errorbar (x1,y1, yerr = sigma2/100, xerr = sigma1/100, color = 'k', linestyle = 'None')
         plt.xlabel(naz1.get())
         plt.ylabel(naz2.get())
         plt.title(titl.get())
@@ -104,9 +104,9 @@ def graphick1():
             b =x[-1] + x[0]*x1[i]
             y.append(b)
         if line.get() == 'p':
-            ax1.plot(x1,y,'--r', label = 'Зависмость'+ naz1.get() + 'от'+ naz2.get())
+            ax1.plot(x1,y,'--r', label = 'Зависмость '+ naz1.get() + ' от '+ naz2.get())
         else:
-            ax1.plot(x1, y, 'r',label = 'Зависмость'+ naz1.get() + 'от'+ naz2.get() )
+            ax1.plot(x1, y, 'r',label = 'Зависмость '+ naz1.get() + ' от '+ naz2.get())
         plt.legend()
         plt.show()
     except AttributeError:

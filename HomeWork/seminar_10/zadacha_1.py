@@ -104,7 +104,7 @@ class Heap:
         return
 
     def pop(self) -> int: # НАПИСАТЬ УДАЛЕНИЕ КОРНЯ
-        min = self.value
+        min = self.Node
         return 0
 
     def heapsort(self, N)-> list: # НАПИСАТЬ УДАЛЕНИЕ КОРНЯ N раз (построенная пирамида выводит упорядоченный список)

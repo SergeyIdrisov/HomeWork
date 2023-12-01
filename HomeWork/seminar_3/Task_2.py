@@ -10,7 +10,7 @@ while i<=int(sqrt(B)):
         i-=1
     i+=1
 if N==1:
-    print(res)
+    print(*res)
 else:
     res.append(N)
-    print (res)
+    print (*res)

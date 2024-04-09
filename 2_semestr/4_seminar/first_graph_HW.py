@@ -131,11 +131,9 @@ def bfs(graph, v):
                 queue.append(neighdour)
                 d[neighdour] = d[u] + 1
     return d
-
-
-graph = read_graph_as_neigh_list()
+#graph = read_graph_as_neigh_list()
 #DFS(graph, 1)
-print(has_cycle(graph))
+#print(has_cycle(graph))
 #print(has_cycle(graph))
 #print(topologicalSort(graph))
 #print(graph)
@@ -145,6 +143,7 @@ print(has_cycle(graph))
 #print(d)
 graph_1 = read_graph_as_neigh_matrix()
 print(graph_1)
+
 
 '''
 8

@@ -11,6 +11,7 @@ class Fenwick_Tree():
         while i < len(self.data):
             self.prefix_sum[i] = self.prefix_sum[i-1] + self.data[i]
             i+=1
+        print(self.prefix_sum)
 
 
     def sum(self,l:int, r:int):
@@ -24,11 +25,10 @@ class Fenwick_Tree():
 
 
 
-tree = Fenwick_Tree([1,2,3,4,5,6,7,8,57,5,48,48,48,48,4,84,84,84,84,84,84,64,51,3,457,21,4,74,54,98,5])
+tree = Fenwick_Tree([1, 5, 3, 6 , 4])
 
-print(Fenwick_Tree.sum(tree,5,10))
+print(Fenwick_Tree.sum(tree,0,4))
 
-Fenwick_Tree.update(tree, 5, -20)
-
-print(Fenwick_Tree.sum(tree, 5, 10 ))
+#Fenwick_Tree.update(tree, 5, -20)
+#print(Fenwick_Tree.sum(tree, 5, 10 ))
 

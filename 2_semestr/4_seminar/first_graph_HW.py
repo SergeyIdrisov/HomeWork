@@ -4,6 +4,7 @@ def read_graph_as_edges():
     graph = [list(map(int, input().split())) for i in range(n)]
     # for i in range(n):
     #     graph.append(list(map(int, input().split())))
+    print(graph)
     return  graph
 def read_graph_as_neigh_list():
     edge_list = read_graph_as_edges()
@@ -141,8 +142,8 @@ def bfs(graph, v):
 #print(father_n(graph, 6 , 7))
 #d = bfs(graph, 1)
 #print(d)
-graph_1 = read_graph_as_neigh_matrix()
-print(graph_1)
+graph_1 = read_graph_as_edges()
+print(has_cycle(graph_1))
 
 
 '''

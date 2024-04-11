@@ -3,7 +3,7 @@ def read_graph_as_edges_w():
     graph = [list(map(int, input().split())) for i in range(n)]
     # for i in range(n):
     #     graph.append(list(map(int, input().split())))
-    return graph
+    return  graph
 def read_graph_as_neigh_list_w():
     edge_list = read_graph_as_edges_w()
     graph_dict = {}  # dict()

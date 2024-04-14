@@ -312,6 +312,7 @@ def prim(graph):  # read_graph_as_neigh_list_w
             continue
     return tree_e
 
+
 graph1 = read_graph_as_neigh_list_w()
 #graph2 = read_graph_as_neigh_matrix_w()
 #DFS_w(graph, 1)

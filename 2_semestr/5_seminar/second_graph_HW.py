@@ -313,8 +313,8 @@ def prim(graph):  # read_graph_as_neigh_list_w
     return tree_e
 
 
-graph1 = read_graph_as_neigh_list_w()
-#graph2 = read_graph_as_neigh_matrix_w()
+#graph1 = read_graph_as_neigh_list_w()
+graph2 = read_graph_as_neigh_matrix_w()
 #DFS_w(graph, 1)
 # print(has_cycle(graph1, 1))
 #print(topologicalSort_w(graph1))
@@ -335,7 +335,8 @@ graph1 = read_graph_as_neigh_list_w()
 #print(pth(1, 3, P))
 #print(bellman_ford(graph2, 1))
 #print(kruskal(graph1))
-print(prim(graph1))
+#print(prim(graph1))
+print(graph2)
 '''
 8
 1 4 6

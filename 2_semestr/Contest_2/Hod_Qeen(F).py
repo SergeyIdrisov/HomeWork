@@ -12,7 +12,6 @@ used = []
 par = []
 mt = []
 rows, cols, cuts, a, b, flow = 0, 0, 0, 0, 0, 0
-
 def dfs(v):
     if used[v]:
         return 0
@@ -25,7 +24,6 @@ def dfs(v):
             par[v] = 1
             return 1
     return 0
-
 def AugmentingPath():
     global rows, cols
     run = 1

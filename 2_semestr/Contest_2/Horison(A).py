@@ -25,10 +25,12 @@ class Graph:
                 print("yes")
                 return
         self.print_solution()
-
 n, m = map(int, input().split())
 g = Graph(m)
 for i in range(m):
-    a,b,c = list(map(int, input().split()))
+    a, b, c = list(map(int, input().split()))
     g.add_edge(a, b, c)
-g.bellman_ford(0)
+try:
+    g.bellman_ford(0)
+except:
+    print('no')
